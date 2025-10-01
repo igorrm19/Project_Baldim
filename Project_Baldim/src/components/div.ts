@@ -1,10 +1,10 @@
 
-export class CardForm {
+export class DivComponent {
     elemento: HTMLDivElement
 
-    constructor() {
+    constructor(style: string) {
         this.elemento = document.createElement('div')
-        this.elemento.className = "bg-gray-500 w-[30%] h-[75vh] flex items-center justify-center flex-col"
+        this.elemento.className = style
     }
 
     mount(container: HTMLElement) {
@@ -17,11 +17,13 @@ export class CardForm {
         this.elemento.classList.add(className)
     }
 
+
     removeClass(...className: string[]) {
         this.elemento.classList.remove(...className)
     }
 
-    appenChild(child: HTMLElement){
+    
+    appenChild(child: HTMLElement){  //Adiciona elementos dentro do pai
         this.elemento.appendChild(child)
     }
 

@@ -1,6 +1,7 @@
 import { Button } from '../components/Button'
 import { Text } from '../components/text';
-import { ComponentGeral } from '../components/geral';
+import { CardForm } from '../components/geral';
+import { DivComponent } from '../components/div';
 
 export class MainPage {
     container: HTMLDivElement;
@@ -14,12 +15,12 @@ export class MainPage {
         parent.appendChild(this.container);
 
         {
-            var div = new ComponentGeral()
+            var div = new CardForm()
             div.mount(this.container)
         }
 
          {
-            const h1 = new Text("Realizar cadrasto")
+            const h1 = new Text("")
             h1.mount(this.container)
             h1.addHTML(`<h1 class="text-white top-0 font-bold text-3xl" >Realizar cadrasto</h1>`)
             div.appenChild(h1.elemento)
@@ -27,13 +28,20 @@ export class MainPage {
 
 
         {
+            var divForm = new DivComponent("bg-red-300 w-[80%] h-[70%] flex items-center justify-center")
+            divForm.mount(this.container)
+            div.appenChild(divForm.elemento)
+        }
+
+        {
             const button = new Button("Cadraste-se", () => {
                 alert("butão clickado");
             });
 
             button.mount(this.container);
-            div.appenChild(button.element)
+            divForm.appenChild(button.element)
         }
+
 
        
     }

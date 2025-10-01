@@ -1,7 +1,4 @@
 import '../style.css'
-// document.querySelector<HTMLDivElement>('#main')!.innerHTML = `
-//  <h1 class="text-red-900">Hello word</h1>
-// `
 
 
 export class App{

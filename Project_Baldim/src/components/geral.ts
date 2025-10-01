@@ -4,7 +4,7 @@ export class CardForm {
 
     constructor() {
         this.elemento = document.createElement('div')
-        this.elemento.className = "bg-gray-500 w-[30%] h-[75vh] flex items-center justify-center flex-col"
+        this.elemento.className = "bg-slate-50 rounded-2xl shadow-2xl p-8 h-[85vh] w-[65vh] mx-auto flex flex-col items-center justify-start mt-10"
     }
 
     mount(container: HTMLElement) {

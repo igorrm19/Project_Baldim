@@ -1,8 +1,5 @@
-
-import { Text } from '../components/text';
-import { CardForm } from '../components/geral';
-import { DivComponent } from '../components/div';
-import { FormLoginComponent } from './formLogin';
+import { TextHTML } from "../components/Text/text";
+import { CardLogin } from "./cardLogin/card";
 
 export class MainPage {
     container: HTMLDivElement;
@@ -15,44 +12,20 @@ export class MainPage {
     mount(parent: HTMLElement) {
         parent.appendChild(this.container);
 
-        {
-            var div = new CardForm()  //card de formulario
-            div.mount(this.container)
+        const text = new TextHTML()
+        text.setContext({
+            texto: "deu certo" //escreve o texto dentro da div
+        })
+        text.mount(this.container)
+        const textString :string = text.elemento.outerHTML // converte para string
 
-            {
-                var divText = new DivComponent("")
-                divText.mount(this.container)  //div dentro do card de formulario
-                div.appenChild(divText.elemento)
-
-                {
-                    const h1 = new Text("")
-                    h1.mount(this.container)
-                    h1.addHTML(`<h1 class="text-cyan-700 top-0 font-bold text-3xl" >Realizar cadrasto</h1>`)
-                    divText.appenChild(h1.elemento)
-                }
-            }
-
-            {
-                var divForm = new DivComponent("")
-                divForm.mount(this.container)  //div dentro do card de formulario
-                div.appenChild(divForm.elemento)
-
-                {
-                    var form = new FormLoginComponent("w-[100%] h-[100%] space-y-5 w-[55vh] flex items-center justify-center flex-col")
-                    form.mount(this.container)
-                    divForm.appenChild(form.elemento)
-                }
-
-            }
-
-
-        }
-
-
-
+        const div = new CardLogin() // cria uma div 
+        div.InserirFilho(textString) // adiciona um componente dentro da div
+        div.montar(this.container) // monta na tela
 
 
     }
 
 
 }
+

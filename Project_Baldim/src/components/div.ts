@@ -8,7 +8,7 @@ export class DivComponent {
     }
 
     mount(container: HTMLElement) {
-        container.appendChild(this.elemento)
+        container.appendChild(this.elemento.cloneNode(true))
     }
 
 

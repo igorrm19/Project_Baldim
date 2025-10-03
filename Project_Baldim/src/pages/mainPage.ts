@@ -12,15 +12,15 @@ export class MainPage {
     mount(parent: HTMLElement) {
         parent.appendChild(this.container);
 
-        const text = new TextHTML()
-        text.setContext({
-            texto: "deu certo" //escreve o texto dentro da div
-        })
-        text.mount(this.container)
-        const textString :string = text.elemento.outerHTML // converte para string
-
+        
         const div = new CardLogin() // cria uma div 
-        div.InserirFilho(textString) // adiciona um componente dentro da div
+        div.setContext({
+            h1_primaryText: "LabManager Pro",
+            h3_segundoTexto: "Sistema de Gerenciamento de Laboratório",
+            label_terceiroTexto: "Email",
+            label_quartoTexto: "Senha",
+            login: "OK"
+        })
         div.montar(this.container) // monta na tela
 
     }

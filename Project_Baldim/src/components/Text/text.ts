@@ -26,7 +26,7 @@ export class TextHTML{
 
   public mount(parent: HTMLElement) :void{
     this.loadTemplete()
-    parent.appendChild(this.elemento.cloneNode(true))
+    parent.appendChild(this.elemento)
   }
 
 }

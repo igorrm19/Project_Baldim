@@ -1,29 +1,40 @@
 import template from "./card.html?raw"
 
-export class CardLogin{
-   public elmento: HTMLDivElement
-   public html: string
- 
-    constructor(){
+export class CardLogin {
+    public elmento: HTMLDivElement
+    private context: Record<string, any> = {}
+    public html: string
+
+    constructor() {
         this.elmento = document.createElement("div")
         this.html = template
     }
 
-
-    public loaderTemplate(){
-        this.elmento.innerHTML = this.html  // templete = ``
+    private copileMotor(html: string): string {
+        return html.replace(/{{\s*(.*?)\s*}}/g, (_, key) => {
+            return this.context[key] ?? ""
+        })
     }
 
 
-    public InserirFilho(filho: string) :void{
-      this.html = this.html.replace(/<\/div>/, `${filho}`)
+    private loaderTemplate() {
+        this.elmento.innerHTML = this.copileMotor(this.html)  // templete = ``
     }
 
 
-    public montar(parent: HTMLElement){
-       this.loaderTemplate() //monto o html
-       parent.appendChild(this.elmento.cloneNode(true))
-      
+    public InserirFilho(filho: string): void {
+        this.html = this.html.replace(/<\/div>/, `${filho}`)
+    }
+
+
+    public montar(parent: HTMLElement) {
+        this.loaderTemplate() //monto o html
+        parent.appendChild(this.elmento.cloneNode(true))
+
+    }
+
+    public setContext(context: Record<string, any>) {
+        this.context = context
     }
 
 }

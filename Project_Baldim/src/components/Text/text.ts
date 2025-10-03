@@ -1,11 +1,11 @@
 import template from "./text.html?raw"
+import { BaeModel } from "../../models/base.model"
 
-export class TextHTML{
-  public elemento: HTMLElement
+export class TextHTML extends BaeModel{
   private context: Record<string, any> = {}
 
   constructor(){
-    this.elemento = document.createElement("div")
+    super("div", template)
   }
 
   public setContext(context: Record<string, any>){

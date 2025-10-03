@@ -23,7 +23,6 @@ export class MainPage {
         div.InserirFilho(textString) // adiciona um componente dentro da div
         div.montar(this.container) // monta na tela
 
-
     }
 
 

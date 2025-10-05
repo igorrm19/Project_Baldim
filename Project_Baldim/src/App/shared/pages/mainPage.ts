@@ -12,20 +12,14 @@ export class MainPage {
     mount(parent: HTMLElement) {
         parent.appendChild(this.container);
 
-
         const div = new CardLogin() // cria uma div 
-        div.setContext({
-            h1_primaryText: "LabManager Pro",
-            h3_segundoTexto: "Sistema de Gerenciamento de Laboratório",
-            label_terceiroTexto: "Email",
-            label_quartoTexto: "Senha",
-            login: "OK"
+        const loginHTML = div.mountCardLogin(this.container)
+        div.setFilho({
+            baldin: loginHTML,
         })
-        div.InserirFilho(`<h1>Deu certo</h1>`)
         div.montar(this.container) // monta na tela
 
     }
-
 
 }
 

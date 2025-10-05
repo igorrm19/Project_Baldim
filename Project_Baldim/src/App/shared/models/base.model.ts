@@ -1,8 +1,9 @@
 
 export class BaseModel {
-    protected html: string
-    protected elemento: HTMLElement
-    protected context: Record<string, any> = {}
+    private html: string
+    private elemento: HTMLElement
+    private context: Record<string, any> = {}
+    private Baldin: Record<string, any> = {}
 
     constructor(element: string, template: string) {
         this.elemento = document.createElement(element)
@@ -15,21 +16,38 @@ export class BaseModel {
         })
     }
 
+    private copileFilho(html: string) :string{
+       return html.replace(/<baldin\s+id="(.*?)"\s*><\/baldin>/g, (_,key) => {
+          return this.Baldin[key] ?? ""
+       })
+
+    }
+
     private loaderTemplate() {
-        this.elemento.innerHTML = this.copileMotor(this.html)  // templete = ``
+        let html = this.elemento.innerHTML = this.copileMotor(this.html)  // templete = ``
+        html = this.copileFilho(html)
+        this.elemento.innerHTML = html
     }
 
 
     public setContext(context: Record<string, any>) {
-        this.context = context
+        this.context = {...this.context, ...context}
     }
 
-    public InserirFilho(filho: string): void {
-        this.html = this.html.replace(/<\/baldin>/, `${filho}`)
+    public setFilho(Baldin: Record<string, string>){
+       return this.Baldin = {...this.Baldin, ...Baldin}
     }
+
+    
+    public getHTML() :string{
+       let html = this.copileMotor(this.html)
+       html = this.copileFilho(html)
+       return html
+    }
+
 
     public montar(parent: HTMLElement) {
         this.loaderTemplate() //monto o html
-        parent.appendChild(this.elemento)
+        parent.appendChild(this.elemento.cloneNode(true))
     }
 }

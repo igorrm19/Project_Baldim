@@ -1,5 +1,5 @@
 
-import { CardLogin } from "./cardLogin/card";
+import { CardLogin } from "../features/login/ui/cardLogin/card";
 
 export class MainPage {
     container: HTMLDivElement;

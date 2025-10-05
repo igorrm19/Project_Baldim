@@ -1,6 +1,5 @@
 import '../style.css'
 
-
 export class App{
     container: HTMLElement
 

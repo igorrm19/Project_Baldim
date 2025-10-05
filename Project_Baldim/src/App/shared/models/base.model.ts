@@ -15,7 +15,7 @@ export class BaseModel {
         })
     }
 
-     private loaderTemplate() {
+    private loaderTemplate() {
         this.elemento.innerHTML = this.copileMotor(this.html)  // templete = ``
     }
 

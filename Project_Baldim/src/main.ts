@@ -1,7 +1,7 @@
 
 import '../src/style.css'
 import { App } from './App/app';
-import { MainPage } from './pages/mainPage';
+import { MainPage } from './App/shared/pages/mainPage';
 import { Router } from './router';
 
 

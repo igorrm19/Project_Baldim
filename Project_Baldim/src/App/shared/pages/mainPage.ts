@@ -1,5 +1,5 @@
-import { TextHTML } from "../components/Text/text";
-import { CardLogin } from "./cardLogin/card";
+
+import { CardLogin } from "../features/login/ui/cardLogin/card";
 
 export class MainPage {
     container: HTMLDivElement;
@@ -12,7 +12,7 @@ export class MainPage {
     mount(parent: HTMLElement) {
         parent.appendChild(this.container);
 
-        
+
         const div = new CardLogin() // cria uma div 
         div.setContext({
             h1_primaryText: "LabManager Pro",
@@ -21,6 +21,7 @@ export class MainPage {
             label_quartoTexto: "Senha",
             login: "OK"
         })
+        div.InserirFilho(`<h1>Deu certo</h1>`)
         div.montar(this.container) // monta na tela
 
     }

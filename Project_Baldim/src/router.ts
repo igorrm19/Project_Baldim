@@ -1,4 +1,4 @@
-import { MainPage } from "./pages/mainPage"
+import { MainPage } from "./App/shared/pages/mainPage"
 
 const routes: Record<string, any> = {
     '': MainPage

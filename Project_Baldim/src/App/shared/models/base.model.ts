@@ -3,7 +3,7 @@ export class BaseModel {
     private html: string
     private elemento: HTMLElement
     private context: Record<string, any> = {}
-    private Baldin: Record<string, any> = {}
+    private Machado: Record<string, string> = {}
 
     constructor(element: string, template: string) {
         this.elemento = document.createElement(element)
@@ -16,10 +16,10 @@ export class BaseModel {
         })
     }
 
-    private copileFilho(html: string) :string{
-       return html.replace(/<baldin\s+id="(.*?)"\s*><\/baldin>/g, (_,key) => {
-          return this.Baldin[key] ?? ""
-       })
+    private copileFilho(html: string): string {
+        return html.replace(/<Machado\s+id="(.*?)"\s*><\/Machado>/g, (_, key) => {
+            return this.Machado[key] ?? ""
+        })
 
     }
 
@@ -30,19 +30,19 @@ export class BaseModel {
     }
 
 
-    public setContext(context: Record<string, any>) {
-        this.context = {...this.context, ...context}
+    public addProps(context: Record<string, any>) {
+        this.context = { ...this.context, ...context }
     }
 
-    public setFilho(Baldin: Record<string, string>){
-       return this.Baldin = {...this.Baldin, ...Baldin}
+    public addComponente(Machado: Record<string, string>) {
+        return this.Machado = { ...this.Machado, ...Machado }
     }
 
-    
-    public getHTML() :string{
-       let html = this.copileMotor(this.html)
-       html = this.copileFilho(html)
-       return html
+
+    public getHTML(): string {
+        let html = this.copileMotor(this.html)
+        html = this.copileFilho(html)
+        return html
     }
 
 

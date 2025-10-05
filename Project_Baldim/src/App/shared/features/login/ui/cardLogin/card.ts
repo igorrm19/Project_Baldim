@@ -11,25 +11,24 @@ export class CardLogin extends ContrutorCardLogin {
     constructor() {
         super("div", template)
         this.containerCardLogin = document.createElement("div")
-
     }
 
     mountCardLogin(parent: HTMLElement): string {
-        parent.appendChild(this.containerCardLogin.cloneNode(true))
+        parent.appendChild(this.containerCardLogin)
 
         const login = new Login()
-        login.setContext({
+
+        login.addProps({
             h1_primaryText: "Titulo do formulario",
             h3_segundoTexto: "Subtitulo",
             label_terceiroTexto: "Email",
             label_quartoTexto: "Senha",
         })
+
+        login.mountLogin(this.containerCardLogin)
         
 
         const loginHTML = login.getHTML()
-
-        this.containerCardLogin.innerHTML = loginHTML
-
 
         return loginHTML
     }

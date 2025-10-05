@@ -12,13 +12,13 @@ export class MainPage {
     mount(parent: HTMLElement) {
         parent.appendChild(this.container);
 
+
         const div = new CardLogin() // cria uma div 
         const loginHTML = div.mountCardLogin(this.container)
-        div.setFilho({
-            baldin: loginHTML,
+        div.addComponente({
+            primary_component: loginHTML,
         })
         div.montar(this.container) // monta na tela
-
     }
 
 }

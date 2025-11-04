@@ -1,4 +1,4 @@
-import { BaseModel } from "../../../../models/base.model";
+import { BaseModel } from "../../../../../../../fox/core/src/module/utils/base.model";
 
 // implementa novas funcionalidades
 

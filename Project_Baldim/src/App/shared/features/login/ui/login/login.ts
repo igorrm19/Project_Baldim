@@ -1,17 +1,20 @@
 
 import template from "./login.html?raw"
-import { ContrutorLogin } from "./construtorLogin"
+import { Main } from "../../../../../../../fox/main"    
 import { TextHTML } from "../../../../components/Text/text"
+//import { BaseModel } from "../../../../../../../fox/core/src/module/utils/base.model"
 
 // responsavel por implementar outros componentes
 
-export class Login extends ContrutorLogin {
+export class Login extends Main {
     containerLogin: HTMLElement
 
     constructor() {
         super("form", template)
         this.containerLogin = document.createElement("div")
+        //this.baseModel = new BaseModel("form", template);
     }
+
 
     mountLogin(parent: HTMLElement) {
         parent.appendChild(this.containerLogin.cloneNode(true))
@@ -21,7 +24,8 @@ export class Login extends ContrutorLogin {
             texto: ""
         })
 
-        this.addComponente({
+
+        text.addComponente({
             par: text.getHTML()
         })
 

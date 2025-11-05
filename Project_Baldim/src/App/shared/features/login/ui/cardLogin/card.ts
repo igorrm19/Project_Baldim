@@ -19,7 +19,6 @@ export class CardLogin extends Main {
 
         const login = new Login()
         
-
         login.addProps({
             h1_primaryText: "Fox",
             h3_segundoTexto: "Realize seu login para continuar",

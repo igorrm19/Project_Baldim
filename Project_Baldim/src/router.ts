@@ -1,20 +1,34 @@
-import { MainPage } from "./App/shared/pages/mainPage"
+// router.ts
 
-const routes: Record<string, any> = {
-    '': MainPage
+import { MainPage } from "./App/shared/pages/mainPage";
+import { AboutPage } from "./App/shared/pages/aboutPage";
+
+
+interface Page {
+  mount(parent: HTMLElement): void;
 }
 
-export class Router {
-    container: HTMLElement
+type PageClass = new () => Page;
 
-    constructor(container: HTMLElement) {
-        this.container = container
-     }
+const routes: Record<string, PageClass> = {
+  "/": MainPage,       // ← a linha que você queria mudar
+    "/about": AboutPage,
+};
 
-    handleRoute() {
-        const hash = window.location.hash
-        const Page = routes[hash] || MainPage
-        this.container.innerHTML = ''
-        new Page().mount(this.container)
-    }
+export function navigate(path: string) {
+  history.pushState({}, "", path);
+  loadRoute(path);
 }
+
+export function loadRoute(path: string) {
+  const PageCtor = routes[path] || routes["/"];
+  const instance = new PageCtor();
+
+  const container = document.querySelector("#app") as HTMLElement | null;
+  if (!container) throw new Error("#app não encontrado no DOM");
+
+  container.innerHTML = "";
+  instance.mount(container);
+}
+
+window.addEventListener("popstate", () => loadRoute(window.location.pathname));

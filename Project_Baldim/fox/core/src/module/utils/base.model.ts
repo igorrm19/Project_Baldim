@@ -10,9 +10,20 @@ export class BaseModel {
         this.html = template
     }
 
+    private escapeHtml(text: string): string {
+        if (typeof text !== 'string') return text;
+        return text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
     private copileMotor(html: string): string {
         return html.replace(/{{\s*(.*?)\s*}}/g, (_, key) => {
-            return this.context[key] ?? ""
+            const value = this.context[key] ?? "";
+            return this.escapeHtml(String(value));
         })
     }
 

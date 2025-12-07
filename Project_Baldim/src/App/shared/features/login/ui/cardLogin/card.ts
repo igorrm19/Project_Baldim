@@ -18,7 +18,7 @@ export class CardLogin extends Main {
         parent.appendChild(this.containerCardLogin)
 
         const login = new Login()
-        
+
         login.addProps({
             h1_primaryText: "Fox",
             h3_segundoTexto: "Realize seu login para continuar",
@@ -27,7 +27,7 @@ export class CardLogin extends Main {
         })
 
         login.mountLogin(this.containerCardLogin)
-        
+
 
         const loginHTML = login.getHTML()
 

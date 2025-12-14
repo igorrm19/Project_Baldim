@@ -6,6 +6,10 @@ import { Main } from "../../../../../../../fox/main"
 
 // responsavel por implementar outros componentes
 
+export interface Template {
+    template: string
+}
+
 export class CardLogin extends Main {
     containerCardLogin: HTMLElement
 

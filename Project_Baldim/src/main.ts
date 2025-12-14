@@ -3,22 +3,19 @@ import { FoxRouter } from '../fox/core/src/module/router/router';
 import { MainPage } from './App/shared/pages/mainPage';
 import { AboutPage } from './App/shared/pages/aboutPage';
 import { teste } from './converto.stringforobject.teste';
-import type { Template } from './App/shared/features/login/ui/cardLogin/card';
+import { html } from './App/shared/features/login/ui/cardLogin/card';
 
 
 function testeTween(htmlString: string): Record<string, any> {
   return {
     "DIV": {
-      "ID": 1
+      "ID": html
     }
   }
 }
 
-const template: Template = {
-  template: ""
-}
 
-testeTween(template.template)
+console.log(testeTween(html))
 teste()
 
 

@@ -10,6 +10,8 @@ export interface Template {
     template: string
 }
 
+export const html = template
+
 export class CardLogin extends Main {
     containerCardLogin: HTMLElement
 

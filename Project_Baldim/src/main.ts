@@ -14,17 +14,19 @@ function testeTween(html: string): Record<string, any> {
   //Uso do DOMParser para converter a string HTML em um documento HTML
   const parse = new DOMParser()
   const doc = parse.parseFromString(html, 'text/html')
-  const div = doc.querySelector('div')
+  const divs = doc.querySelectorAll('div')
 
   //Uso de uma pilha para armazenar as views
   const pilha: ActionItem[] = []
-  const view = pilha.push({ div: div })
+  divs.forEach(div => {
+    pilha.push({ div: div })
+  })
 
   //Retorno do objeto com a view
   return {
     "DIV": {
-      "ID": div,
-      "view": pilha[view - 1]
+      "ID": divs,
+      "view": pilha[pilha.length], pilha
     }
   }
 }

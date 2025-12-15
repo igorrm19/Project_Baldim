@@ -39,17 +39,17 @@ export function parseButton(html: string): Record<string, any> {
     // Problema: Não posso ultilizar o nome da função apenas encontrar todas as funções
     // Da forma como esta funciona porem o usuario teria que ativar push sempre que queresse execultar sua função
     function on() {
-        alert("Deu certo")
+        alert("Deu certo") //execultou
     }
 
     function on2() {
-        console.log('on2(), 1')
+        alert("Deu certo 2") //execultou
     }
 
     funcoes.push(on2)
 
     function on3() {
-        console.log('on3(), 2')
+        alert("Deu certo 3") //não execultou pois não existe no html
     }
 
     funcoes.push(on3)
@@ -64,6 +64,7 @@ export function parseButton(html: string): Record<string, any> {
         } else {
             n++
         }
+        n++
     });
 
     // Retorno do objeto com a view

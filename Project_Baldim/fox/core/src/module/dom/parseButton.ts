@@ -33,16 +33,22 @@ export function parseButton(html: string): Record<string, any> {
             })
     })
 
-    async function on() {
-        await console.log('on(), 0')
+    const funcoes = []
+    funcoes.push(on)
+
+    console.log(funcoes[0].name)
+    // Problema: Não posso ultilizar o nome da função apenas encontrar todas as funções
+    function on() {
+        console.log('on(), 0')
     }
 
-
-    if (pilha[0].onClick === on.name + "()") {
-        on()
-    } else {
-        console.log(on.name, 1)
-    }
+    pilha.forEach(fun => {
+        if (fun.onClick === on.name + "()") {
+            on()
+        } else {
+            console.log(on.name, 1)
+        }
+    });
 
     // Retorno do objeto com a view
     // Problema: construir um obejeto conforme as tags são encontradas
@@ -50,3 +56,4 @@ export function parseButton(html: string): Record<string, any> {
 }
 
 
+// Missão: Armazenar todas as funções de um arquivo ts dentro de um array e comparala com todas as funções encontradas no html

@@ -33,20 +33,36 @@ export function parseButton(html: string): Record<string, any> {
             })
     })
 
-    const funcoes = []
+    const funcoes: Function[] = []
     funcoes.push(on)
 
-    console.log(funcoes[0].name)
     // Problema: Não posso ultilizar o nome da função apenas encontrar todas as funções
+    // Da forma como esta funciona porem o usuario teria que ativar push sempre que queresse execultar sua função
     function on() {
-        console.log('on(), 0')
+        alert("Deu certo")
     }
 
+    function on2() {
+        console.log('on2(), 1')
+    }
+
+    funcoes.push(on2)
+
+    function on3() {
+        console.log('on3(), 2')
+    }
+
+    funcoes.push(on3)
+
+    console.log(funcoes)
+
+    // comparar todas as funções encontradas com todas as funções do arquivo ts
+    let n = 0
     pilha.forEach(fun => {
-        if (fun.onClick === on.name + "()") {
-            on()
+        if (fun.onClick === funcoes[n].name + '()') {
+            funcoes[n]()
         } else {
-            console.log(on.name, 1)
+            n++
         }
     });
 
@@ -57,3 +73,12 @@ export function parseButton(html: string): Record<string, any> {
 
 
 // Missão: Armazenar todas as funções de um arquivo ts dentro de um array e comparala com todas as funções encontradas no html
+
+/*
+
+  Resultado final: 
+  1 -  O usuario cria uma função referente ao onClick do botão e armazena com push
+  2 -  Se a função existir no arquivo ts, ela será execultada
+  3 -  Se a função não existir no arquivo ts, ela não será execultada
+
+*/

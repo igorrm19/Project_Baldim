@@ -5,8 +5,8 @@ import { AboutPage } from './App/shared/pages/aboutPage';
 import { teste } from './converto.stringforobject.teste';
 import { html } from './App/shared/features/login/ui/cardLogin/card';
 
-export interface ActionItem {
-  div: HTMLElement | any
+export type ActionItem = {
+  div: string | any
 }
 
 function testeTween(html: string): Record<string, any> {
@@ -18,7 +18,7 @@ function testeTween(html: string): Record<string, any> {
 
   //Uso de uma pilha para armazenar as views
   const pilha: ActionItem[] = []
-  const view = pilha.push({ div: html })
+  const view = pilha.push({ div: div })
 
   //Retorno do objeto com a view
   return {
@@ -28,7 +28,6 @@ function testeTween(html: string): Record<string, any> {
     }
   }
 }
-
 
 console.log(testeTween(html))
 teste()

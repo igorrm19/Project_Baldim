@@ -21,15 +21,15 @@ export class Login extends Main {
 
         const text = new TextHTML()
         text.addProps({
-            texto: ""
+            text: ""
         })
 
 
-        text.addComponente({
+        text.addComponent({
             par: text.getHTML()
         })
 
-        text.montar(this.containerLogin)
+        text.mount(this.containerLogin)
     }
 
 }

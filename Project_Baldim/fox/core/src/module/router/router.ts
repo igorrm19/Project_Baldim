@@ -32,7 +32,7 @@ export class FoxRouter {
         const instance = new PageCtor();
 
         const container = document.querySelector(this.containerId) as HTMLElement | null;
-        if (!container) throw new Error(`${this.containerId} não encontrado no DOM`);
+        if (!container) throw new Error(`${this.containerId} not found in DOM`);
 
         container.innerHTML = "";
         instance.mount(container);

@@ -10,16 +10,16 @@ export type ActionItem = {
 }
 
 export function parseButton(html: string): Record<string, any> {
-    // Uso do DOMParser para converter a string HTML em um documento HTML
-    const parse = new DOMParser()
-    const doc = parse.parseFromString(html, 'text/html')
+    // Use DOMParser to convert HTML string to an HTML document
+    const parser = new DOMParser()
+    const doc = parser.parseFromString(html, 'text/html')
     const buttons = doc.querySelectorAll('button')
 
-    // Uso de uma pilha para armazenar as views
-    const pilha: ActionItem[] = []
+    // Use a stack to store views
+    const stack: ActionItem[] = []
     buttons.forEach(button => {
 
-        pilha.push(
+        stack.push(
             {
                 button: button,
                 id: button.id,
@@ -33,53 +33,53 @@ export function parseButton(html: string): Record<string, any> {
             })
     })
 
-    const funcoes: Function[] = []
-    funcoes.push(on)
+    const functions: Function[] = []
+    functions.push(on)
 
-    // Problema: Não posso ultilizar o nome da função apenas encontrar todas as funções
-    // Da forma como esta funciona porem o usuario teria que ativar push sempre que queresse execultar sua função
+    // Issue: Cannot use function name only, must find all functions
+    // The way it works now, the user has to call push whenever they want to execute their function
     function on() {
-        alert("Deu certo") //execultou
+        alert("Success") // executed
     }
 
     function on2() {
-        alert("Deu certo 2") //execultou
+        alert("Success 2") // executed
     }
 
-    funcoes.push(on2)
+    functions.push(on2)
 
     function on3() {
-        alert("Deu certo 3") //não execultou pois não existe no html
+        alert("Success 3") // not executed because it doesn't exist in HTML
     }
 
-    funcoes.push(on3)
+    functions.push(on3)
 
-    console.log(funcoes)
+    console.log(functions)
 
-    // comparar todas as funções encontradas com todas as funções do arquivo ts
+    // Compare all found functions with all functions in the TS file
     let n = 0
-    pilha.forEach(fun => {
-        if (fun.onClick === funcoes[n].name + '()') {
-            funcoes[n]()
+    stack.forEach(fun => {
+        if (fun.onClick === functions[n].name + '()') {
+            functions[n]()
         } else {
             n++
         }
         n++
     });
 
-    // Retorno do objeto com a view
-    // Problema: construir um obejeto conforme as tags são encontradas
-    return pilha
+    // Return the object with the view
+    // Issue: build an object as tags are found
+    return stack
 }
 
 
-// Missão: Armazenar todas as funções de um arquivo ts dentro de um array e comparala com todas as funções encontradas no html
+// Mission: Store all functions of a TS file in an array and compare it with all functions found in HTML
 
 /*
 
-  Resultado final: 
-  1 -  O usuario cria uma função referente ao onClick do botão e armazena com push
-  2 -  Se a função existir no arquivo ts, ela será execultada
-  3 -  Se a função não existir no arquivo ts, ela não será execultada
+  Final result: 
+  1 - The user creates a function for the button's onClick and stores it with push
+  2 - If the function exists in the TS file, it will be executed
+  3 - If the function does not exist in the TS file, it will not be executed
 
 */

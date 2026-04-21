@@ -10,15 +10,15 @@ export type ActionItem = {
 }
 
 export function parseHTML(html: string): Record<string, any> {
-    // Uso do DOMParser para converter a string HTML em um documento HTML
-    const parse = new DOMParser()
-    const doc = parse.parseFromString(html, 'text/html')
+    // Use DOMParser to convert HTML string to an HTML document
+    const parser = new DOMParser()
+    const doc = parser.parseFromString(html, 'text/html')
     const divs = doc.querySelectorAll('div')
 
-    // Uso de uma pilha para armazenar as views
-    const pilha: ActionItem[] = []
+    // Use a stack to store views
+    const stack: ActionItem[] = []
     divs.forEach(div => {
-        pilha.push(
+        stack.push(
             {
                 div: div,
                 id: div.id,
@@ -29,8 +29,8 @@ export function parseHTML(html: string): Record<string, any> {
             })
     })
 
-    // Retorno do objeto com a view
-    // Problema: construir um obejeto conforme as tags são encontradas
-    return pilha
+    // Return the object with the view
+    // Issue: build an object as tags are found
+    return stack
 }
 

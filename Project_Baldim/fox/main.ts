@@ -16,8 +16,8 @@ export class Main implements IBaseModel {
     }
 
 
-    addComponente(componente: { [key: string]: any; }) {
-        return this.baseModel.addComponente(componente);
+    addComponent(component: { [key: string]: any; }) {
+        return this.baseModel.addComponent(component);
 
     }
 
@@ -26,8 +26,8 @@ export class Main implements IBaseModel {
         return this.baseModel.getHTML()
     }
 
-    montar(parent: HTMLElement): void {
-        this.baseModel.montar(parent);
+    mount(parent: HTMLElement): void {
+        this.baseModel.mount(parent);
     }
 }
 

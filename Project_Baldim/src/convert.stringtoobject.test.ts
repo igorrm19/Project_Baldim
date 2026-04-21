@@ -66,17 +66,17 @@ function domNodeToObject(node: Node): HtmlNodeDetail {
     return detail;
 }
 
-const html = `
+const htmlExample = `
 <div id="main-container" class="p-4">
-    <h1>Teste Título</h1>
-    <button id="btn-1" onclick="alert('Clicked!')">Clique Aqui</button>
-    <p data-info="example" onclick="console.log('Paragraph clicked')">Teste parágrafo com <strong>negrito</strong>.</p>
-    <!-- Um comentário -->
+    <h1>Test Title</h1>
+    <button id="btn-1" onclick="alert('Clicked!')">Click Here</button>
+    <p data-info="example" onclick="console.log('Paragraph clicked')">Test paragraph with <strong>bold</strong> text.</p>
+    <!-- A comment -->
 </div>`;
 
-export function teste(): void {
-    console.log("HTML Original:", html);
-    const result = htmlStringToObject(html);
-    console.log("Objeto Detalhado:", JSON.stringify(result, null, 2));
+export function test(): void {
+    console.log("Original HTML:", htmlExample);
+    const result = htmlStringToObject(htmlExample);
+    console.log("Detailed Object:", JSON.stringify(result, null, 2));
     console.log("Action Stack:", actionStack.getAll());
 }

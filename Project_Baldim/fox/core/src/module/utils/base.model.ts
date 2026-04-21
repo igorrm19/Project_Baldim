@@ -1,12 +1,12 @@
 
 export class BaseModel {
     private html: string
-    private elemento: HTMLElement
+    private element: HTMLElement
     private context: Record<string, any> = {}
-    private Machado: Record<string, string> = {}
+    private axe: Record<string, string> = {}
 
     constructor(element: string, template: string) {
-        this.elemento = document.createElement(element)
+        this.element = document.createElement(element)
         this.html = template
     }
 
@@ -20,24 +20,24 @@ export class BaseModel {
             .replace(/'/g, "&#039;");
     }
 
-    private copileMotor(html: string): string {
+    private compileEngine(html: string): string {
         return html.replace(/{{\s*(.*?)\s*}}/g, (_, key) => {
             const value = this.context[key] ?? "";
             return this.escapeHtml(String(value));
         })
     }
 
-    private copileFilho(html: string): string {
-        return html.replace(/<Machado\s+id="(.*?)"\s*><\/Machado>/g, (_, key) => {
-            return this.Machado[key] ?? ""
+    private compileChild(html: string): string {
+        return html.replace(/<Axe\s+id="(.*?)"\s*><\/Axe>/g, (_, key) => {
+            return this.axe[key] ?? ""
         })
 
     }
 
-    private loaderTemplate() {
-        let html = this.elemento.innerHTML = this.copileMotor(this.html)  // templete = ``
-        html = this.copileFilho(html)
-        this.elemento.innerHTML = html
+    private loadTemplate() {
+        let html = this.element.innerHTML = this.compileEngine(this.html)  // template = ``
+        html = this.compileChild(html)
+        this.element.innerHTML = html
     }
 
 
@@ -45,20 +45,20 @@ export class BaseModel {
         this.context = { ...this.context, ...context }
     }
 
-    public addComponente(Machado: Record<string, string>) {
-        return this.Machado = { ...this.Machado, ...Machado }
+    public addComponent(axe: Record<string, string>) {
+        return this.axe = { ...this.axe, ...axe }
     }
 
 
     public getHTML(): string {
-        let html = this.copileMotor(this.html)
-        html = this.copileFilho(html)
+        let html = this.compileEngine(this.html)
+        html = this.compileChild(html)
         return html
     }
 
 
-    public montar(parent: HTMLElement) {
-        this.loaderTemplate() //monto o html
-        parent.appendChild(this.elemento.cloneNode(true))
+    public mount(parent: HTMLElement) {
+        this.loadTemplate() // mount the html
+        parent.appendChild(this.element.cloneNode(true))
     }
 }

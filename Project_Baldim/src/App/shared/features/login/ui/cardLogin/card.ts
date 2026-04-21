@@ -27,9 +27,9 @@ export class CardLogin extends Main {
 
         login.addProps({
             h1_primaryText: "Fox",
-            h3_segundoTexto: "Realize seu login para continuar",
-            label_terceiroTexto: "Email",
-            label_quartoTexto: "Senha",
+            h3_secondaryText: "Please login to continue",
+            label_thirdText: "Email",
+            label_fourthText: "Password",
         })
 
         login.mountLogin(this.containerCardLogin)
